@@ -1,0 +1,46 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details of Order</h1>
+
+<div>
+    <h4>Order - #@Model.Id</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Customer.Username
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Books)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var ordersDetail in Model.OrdersDetails)
+                {
+                    <tr>
+                        <td>@ordersDetail.Book.Name</td>
+                        <td>@ordersDetail.Number</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
